@@ -14,7 +14,16 @@ class UserViewModel : ViewModel() {
         SharedPreferencesManager.putString(Constant.USER_NAME, name)
     }
 
-    fun checkLogin() : Boolean {
+    fun checkLogin() : Boolean
+    {
         return SharedPreferencesManager.getBoolean(Constant.LOGIN_STATUS, false)
+    }
+
+    fun getUserName() : String {
+        return SharedPreferencesManager.getString(Constant.USER_NAME, "")
+    }
+
+    fun logout() {
+        SharedPreferencesManager.putBoolean(Constant.LOGIN_STATUS, false)
     }
 }
