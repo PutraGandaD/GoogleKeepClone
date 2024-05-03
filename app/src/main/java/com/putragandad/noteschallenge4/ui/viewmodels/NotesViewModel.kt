@@ -1,5 +1,6 @@
 package com.putragandad.noteschallenge4.ui.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +21,7 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
     // launch coroutine for executing repository function
     fun insert(notes: Notes) = viewModelScope.launch {
         repository.insert(notes)
+        Log.d("DATA", "$notes")
     }
 
     fun update(notes: Notes) = viewModelScope.launch {

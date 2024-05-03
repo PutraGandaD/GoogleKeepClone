@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/addEditNotesFragment"
-        android:name="com.putragandad.noteschallenge4.ui.fragments.notes.AddEditNotesFragment"
+        android:name="com.putragandad.noteschallenge4.ui.fragments.notes.AddNotesFragment"
         android:label="fragment_add_edit_notes"
-        tools:layout="@layout/fragment_add_edit_notes" />
+        tools:layout="@layout/fragment_add_notes" />
 </navigation>

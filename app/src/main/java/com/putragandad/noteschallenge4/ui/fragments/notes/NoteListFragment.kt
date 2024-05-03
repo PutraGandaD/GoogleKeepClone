@@ -60,6 +60,8 @@ class NoteListFragment : Fragment() {
             setUpRecyclerView(notes)
         })
 
+
+
     }
 
     private fun setUpRecyclerView(dataset: List<Notes>) {
