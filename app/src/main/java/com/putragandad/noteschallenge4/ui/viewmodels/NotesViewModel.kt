@@ -2,6 +2,7 @@ package com.putragandad.noteschallenge4.ui.viewmodels
 
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
@@ -10,18 +11,39 @@ import com.putragandad.noteschallenge4.data.Notes
 import com.putragandad.noteschallenge4.repositories.NotesRepository
 import com.putragandad.noteschallenge4.utils.Constant
 import com.putragandad.noteschallenge4.utils.SharedPreferencesManager
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
-    val userEmail: String = SharedPreferencesManager.getString(Constant.USER_EMAIL, "") // get user email
-    val notesByUser : LiveData<List<Notes>> = repository.getNotesByUser(userEmail).asLiveData()
+    private var _userEmail : String = ""
+    val userEmail: String
+        get() = _userEmail
+
+    fun setUserEmail(value: String) {
+        _userEmail = value
+        updateNotesData()
+    }
+
+    private val _notesByUser = MutableLiveData<List<Notes>>()
+
+    val notesByUser : LiveData<List<Notes>>
+        get() = _notesByUser
 
     // launch coroutine for executing repository function
+
+    // collect from Flow in the repository
+    private fun updateNotesData() {
+        viewModelScope.launch {
+            repository.getNotesByUser(userEmail).collect{
+                _notesByUser.value = it
+            }
+        }
+    }
+
     fun insert(notes: Notes) = viewModelScope.launch {
         repository.insert(notes)
-        Log.d("DATA", "$notes")
     }
 
     fun update(notes: Notes) = viewModelScope.launch {

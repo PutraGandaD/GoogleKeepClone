@@ -39,7 +39,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogin.setOnClickListener {
-            userViewModel.login()
+            val email = binding.tfEmail.editText?.text.toString()
+            userViewModel.login(email)
             findNavController().navigate(R.id.action_loginFragment_to_noteListFragment)
         }
 

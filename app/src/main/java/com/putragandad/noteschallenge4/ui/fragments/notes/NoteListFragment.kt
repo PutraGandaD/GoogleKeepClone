@@ -1,6 +1,7 @@
 package com.putragandad.noteschallenge4.ui.fragments.notes
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,7 +45,6 @@ class NoteListFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         userViewModel = ViewModelProvider(requireActivity()).get(UserViewModel::class.java)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,12 +56,10 @@ class NoteListFragment : Fragment() {
             findNavController().navigate(R.id.action_noteListFragment_to_addEditNotesFragment)
         }
 
+        notesViewModel.setUserEmail(userViewModel.getEmail())
         notesViewModel.notesByUser.observe(viewLifecycleOwner, Observer { notes ->
             setUpRecyclerView(notes)
         })
-
-
-
     }
 
     private fun setUpRecyclerView(dataset: List<Notes>) {

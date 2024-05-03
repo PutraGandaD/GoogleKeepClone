@@ -5,8 +5,9 @@ import com.putragandad.noteschallenge4.utils.Constant
 import com.putragandad.noteschallenge4.utils.SharedPreferencesManager
 
 class UserViewModel : ViewModel() {
-    fun login() {
+    fun login(email: String) {
         SharedPreferencesManager.putBoolean(Constant.LOGIN_STATUS, true)
+        SharedPreferencesManager.putString(Constant.USER_EMAIL, email)
     }
 
     fun register(email: String, name: String) {

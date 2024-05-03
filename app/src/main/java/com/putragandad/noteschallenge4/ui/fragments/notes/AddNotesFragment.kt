@@ -50,4 +50,9 @@ class AddNotesFragment : Fragment() {
             findNavController().popBackStack()
         }
     }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
 }
