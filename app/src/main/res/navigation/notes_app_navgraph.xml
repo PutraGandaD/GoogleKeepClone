@@ -34,5 +34,13 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/noteListFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_noteListFragment_to_addEditNotesFragment"
+            app:destination="@id/addEditNotesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/addEditNotesFragment"
+        android:name="com.putragandad.noteschallenge4.ui.fragments.notes.AddEditNotesFragment"
+        android:label="fragment_add_edit_notes"
+        tools:layout="@layout/fragment_add_edit_notes" />
 </navigation>

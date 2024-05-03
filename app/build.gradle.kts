@@ -71,4 +71,7 @@ dependencies {
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1-Beta")
+
+    // Drawer Layout
+    implementation("androidx.drawerlayout:drawerlayout:1.2.0")
 }

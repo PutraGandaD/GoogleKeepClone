@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_item"
+        android:title="Main Menu">
+
+        <menu>
+            <item
+                android:id="@+id/navdrawer_mainmenu_home"
+                android:icon="@drawable/ic_home_24"
+                android:title="Home"
+                android:checkable="true"/>
+            <item
+                android:id="@+id/navdrawer_mainmenu_logout"
+                android:icon="@drawable/ic_logout_24"
+                android:title="Log Out"
+                android:checkable="true"/>
+        </menu>
+
+    </item>
+
+</menu>

@@ -23,6 +23,10 @@ class UserViewModel : ViewModel() {
         return SharedPreferencesManager.getString(Constant.USER_NAME, "")
     }
 
+    fun getEmail() : String {
+        return SharedPreferencesManager.getString(Constant.USER_EMAIL, "")
+    }
+
     fun logout() {
         SharedPreferencesManager.putBoolean(Constant.LOGIN_STATUS, false)
     }

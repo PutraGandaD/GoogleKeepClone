@@ -13,6 +13,6 @@ class AddEditNotesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_notes, container, false)
+        return inflater.inflate(R.layout.fragment_add_edit_notes, container, false)
     }
 }
