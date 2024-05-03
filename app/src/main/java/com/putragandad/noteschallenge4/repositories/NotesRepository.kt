@@ -4,16 +4,13 @@ import androidx.annotation.WorkerThread
 import com.putragandad.noteschallenge4.data.Notes
 import com.putragandad.noteschallenge4.db.NotesDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 
 class NotesRepository(private val notesDao: NotesDao) {
-
-    // Observe flow from the list of notes
-    val allNotes: Flow<List<Notes>> = notesDao.getAllNotes()
-
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
-    suspend fun getNotesByUser(email: String) {
-        notesDao.getNotesByUser(email)
+    fun getNotesByUser(email: String) : Flow<List<Notes>> {
+        return notesDao.getNotesByUser(email)
     }
 
     suspend fun insert(notes: Notes) {

@@ -11,11 +11,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface NotesDao {
-    @Query("SELECT * FROM note_table ORDER BY notesContent ASC")
-    fun getAllNotes() : Flow<List<Notes>> // Use Flow
-
     // Getting all words based on user email
-    @Query("SELECT * FROM note_table WHERE userEmail = :email")
+    @Query("SELECT * FROM note_table WHERE userEmail = :email ORDER BY notesContent ASC")
     fun getNotesByUser(email: String) : Flow<List<Notes>> // Use Flow
 
     // Inserting a notes
