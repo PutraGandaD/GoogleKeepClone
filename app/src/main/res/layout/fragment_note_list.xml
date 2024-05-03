@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="14dp"
     tools:context=".ui.fragments.notes.NoteListFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,11 +12,11 @@
         android:id="@+id/tv_hello_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Notes List"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Nama Akun"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/btn_logout"
+        app:layout_constraintBottom_toBottomOf="@id/btn_logout"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_logout"
@@ -23,7 +24,17 @@
         android:layout_height="wrap_content"
         android:text="Logout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_notes_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tv_hello_list"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_hello_list" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        tools:listitem="@layout/rv_notes_list"
+        tools:itemCount="3"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

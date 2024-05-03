@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.putragandad.noteschallenge4.R
 import com.putragandad.noteschallenge4.data.Notes
 
-class NotesListAdapter(private val dataSet: List<Notes>) : RecyclerView.Adapter<NotesListAdapter.ViewHolder>() {
+class NotesListAdapter(private val dataSet: ArrayList<Notes>) : RecyclerView.Adapter<NotesListAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvNotesTitle : TextView = view.findViewById(R.id.tv_notes_title_preview)
         val tvNotesContent : TextView = view.findViewById(R.id.tv_notes_content_preview)
