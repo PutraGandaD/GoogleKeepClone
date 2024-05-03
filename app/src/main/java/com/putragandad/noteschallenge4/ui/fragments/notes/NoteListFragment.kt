@@ -1,4 +1,4 @@
-package com.putragandad.noteschallenge4.ui.fragments
+package com.putragandad.noteschallenge4.ui.fragments.notes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.putragandad.noteschallenge4.R
-import com.putragandad.noteschallenge4.databinding.FragmentLoginBinding
 import com.putragandad.noteschallenge4.databinding.FragmentNoteListBinding
 import com.putragandad.noteschallenge4.ui.viewmodels.UserViewModel
 

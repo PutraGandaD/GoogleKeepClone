@@ -26,7 +26,7 @@
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/noteListFragment"
-        android:name="com.putragandad.noteschallenge4.ui.fragments.NoteListFragment"
+        android:name="com.putragandad.noteschallenge4.ui.fragments.notes.NoteListFragment"
         android:label="fragment_note_list"
         tools:layout="@layout/fragment_note_list" >
         <action
