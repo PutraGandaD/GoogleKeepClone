@@ -9,7 +9,9 @@
 - [x] And more...
 
 ## Screenshot :
-<br>
-![1ss](https://github.com/PutraGandaD/F-AND24001121-synrgy7-put-NotesApp-ch4/assets/54593964/08b72e89-c620-4850-b62b-425219bc0ef5)
-![2ss](https://github.com/PutraGandaD/F-AND24001121-synrgy7-put-NotesApp-ch4/assets/54593964/4a289631-90cd-44e9-9818-49b76e596e1f)
-![3ss](https://github.com/PutraGandaD/F-AND24001121-synrgy7-put-NotesApp-ch4/assets/54593964/bf78b347-e9d9-44e2-97be-477a83f1aee0)
+![1ss](https://github.com/PutraGandaD/F-AND24001121-synrgy7-put-NotesApp-ch4/assets/54593964/55dc8243-c2bc-4ab4-9307-b9bd49056738)
+![2ss](https://github.com/PutraGandaD/F-AND24001121-synrgy7-put-NotesApp-ch4/assets/54593964/616365f6-a446-4c2f-ad5d-e5ac1f10932e)
+![3ss](https://github.com/PutraGandaD/F-AND24001121-synrgy7-put-NotesApp-ch4/assets/54593964/ac3c2e75-9eda-4195-a4ac-323c81dac964)
+
+
+
