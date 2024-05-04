@@ -3,13 +3,14 @@ package com.putragandad.noteschallenge4.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
 import com.putragandad.noteschallenge4.R
 import com.putragandad.noteschallenge4.data.Notes
 
-class NotesListAdapter(private val dataSet: List<Notes>) : RecyclerView.Adapter<NotesListAdapter.ViewHolder>() {
+class NotesListAdapter(private val dataSet: List<Notes>, val itemClickListener: OnItemClickListener) : RecyclerView.Adapter<NotesListAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvNotesTitle : TextView = view.findViewById(R.id.tv_notes_title_preview)
         val tvNotesContent : TextView = view.findViewById(R.id.tv_notes_content_preview)
@@ -27,8 +28,20 @@ class NotesListAdapter(private val dataSet: List<Notes>) : RecyclerView.Adapter<
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val getData = dataSet[position] // get data from the current position
+
         holder.tvNotesTitle.text = getData.title
         holder.tvNotesContent.text = getData.notesContent
+
+        val editNotesIcon = holder.itemView.findViewById<ImageView>(R.id.ic_edit_note)
+        val deleteNotesIcon = holder.itemView.findViewById<ImageView>(R.id.ic_delete_note)
+
+        editNotesIcon.setOnClickListener {
+            itemClickListener.onNotesClicked(getData)
+        }
+
+        deleteNotesIcon.setOnClickListener {
+            itemClickListener.onDelete(getData)
+        }
     }
 
 }

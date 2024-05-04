@@ -35,12 +35,20 @@
             app:popUpTo="@id/noteListFragment"
             app:popUpToInclusive="true"/>
         <action
-            android:id="@+id/action_noteListFragment_to_addEditNotesFragment"
-            app:destination="@id/addEditNotesFragment" />
+            android:id="@+id/action_noteListFragment_to_addNotesFragment"
+            app:destination="@id/addNotesFragment" />
+        <action
+            android:id="@+id/action_noteListFragment_to_editNotesFragment"
+            app:destination="@id/editNotesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/addEditNotesFragment"
+        android:id="@+id/addNotesFragment"
         android:name="com.putragandad.noteschallenge4.ui.fragments.notes.AddNotesFragment"
         android:label="fragment_add_edit_notes"
         tools:layout="@layout/fragment_add_notes" />
+    <fragment
+        android:id="@+id/editNotesFragment"
+        android:name="com.putragandad.noteschallenge4.ui.fragments.notes.EditNotesFragment"
+        android:label="fragment_edit_notes"
+        tools:layout="@layout/fragment_edit_notes" />
 </navigation>
