@@ -36,7 +36,6 @@ class EditNotesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val bundle = arguments?.getParcelable<Notes>(Constant.NOTES_BUNDLE)
 
         if(bundle != null) { // check if bundle isn't null
@@ -52,9 +51,10 @@ class EditNotesFragment : Fragment() {
             notesContentField.editText?.setText(notesContentFromBundle)
 
             binding.fabSaveNotes.setOnClickListener {
+                // get current title and content from the textfield when fab pressed
                 val notesTitle = notesTitleField.editText?.text.toString()
                 val notesContent = notesContentField.editText?.text.toString()
-                if(notesTitle.isNotEmpty() && notesContent.isNotEmpty()) {
+                if(notesTitle.isNotEmpty() && notesContent.isNotEmpty()) { // check isNotEmpty
                     val notes = Notes(notesIdFromBundle, notesTitle, notesContent, notesUserEmailFromBundle)
                     notesViewModel.update(notes)
                     Snackbar.make(requireView(), "Notes edited and saved successfully!", Snackbar.LENGTH_LONG).show()

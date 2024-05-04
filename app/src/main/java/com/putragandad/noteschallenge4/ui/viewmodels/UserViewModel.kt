@@ -5,14 +5,29 @@ import com.putragandad.noteschallenge4.utils.Constant
 import com.putragandad.noteschallenge4.utils.SharedPreferencesManager
 
 class UserViewModel : ViewModel() {
-    fun login(email: String) {
-        SharedPreferencesManager.putBoolean(Constant.LOGIN_STATUS, true)
-        SharedPreferencesManager.putString(Constant.USER_EMAIL, email)
+    fun login(email: String, password: String) : Boolean {
+        val emailFromSp = SharedPreferencesManager.getString(Constant.USER_EMAIL, "")
+        val passwordFromSp = SharedPreferencesManager.getString(Constant.USER_PASSWORD, "")
+
+        val loginAuth = if(email == emailFromSp && password == passwordFromSp) {
+            SharedPreferencesManager.putBoolean(Constant.LOGIN_STATUS, true)
+            true
+        } else {
+            false
+        }
+        return loginAuth
     }
 
-    fun register(email: String, name: String) {
-        SharedPreferencesManager.putString(Constant.USER_EMAIL, email)
-        SharedPreferencesManager.putString(Constant.USER_NAME, name)
+    fun register(email: String, name: String, password: String, passwordCv: String) : Boolean {
+        val registerAuth = if(password == passwordCv) {
+            SharedPreferencesManager.putString(Constant.USER_EMAIL, email)
+            SharedPreferencesManager.putString(Constant.USER_NAME, name)
+            SharedPreferencesManager.putString(Constant.USER_PASSWORD, password)
+            true
+        } else {
+            false
+        }
+        return registerAuth
     }
 
     fun checkLogin() : Boolean

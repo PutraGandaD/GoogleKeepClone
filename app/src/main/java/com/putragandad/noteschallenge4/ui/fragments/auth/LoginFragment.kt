@@ -41,10 +41,22 @@ class LoginFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener {
             val email = binding.tfEmail.editText?.text.toString()
-            userViewModel.login(email)
-            findNavController().navigate(R.id.action_loginFragment_to_noteListFragment)
-            Snackbar.make(it, "Login successful! You're signed in as ${userViewModel.getEmail()}", Snackbar.LENGTH_LONG)
-                .show()
+            val password = binding.tfPassword.editText?.text.toString()
+
+            if(email.isNotEmpty() && password.isNotEmpty()) {
+                val loginAuth = userViewModel.login(email, password)
+                if(loginAuth) {
+                    findNavController().navigate(R.id.action_loginFragment_to_noteListFragment)
+                    Snackbar.make(it, "Login successful! You're signed in as ${userViewModel.getEmail()}", Snackbar.LENGTH_LONG)
+                        .show()
+                } else {
+                    Snackbar.make(it, "Invalid email or password. Try Again.", Snackbar.LENGTH_LONG)
+                        .show()
+                }
+            } else {
+                Snackbar.make(it, "Email or password can't be empty.", Snackbar.LENGTH_LONG)
+                    .show()
+            }
         }
 
         binding.btnRegisterPage.setOnClickListener {

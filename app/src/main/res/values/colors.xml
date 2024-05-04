@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="material_color_standard">#F7F4E7</color>
     <color name="material_fab_color">#B7F397</color>
+    <color name="material_basic_bg">#FDFDF5</color>
+    <color name="material_btn_basic">#386A20</color>
 </resources>
