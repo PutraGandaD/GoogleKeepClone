@@ -32,6 +32,25 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="6dp" />
 
+        <ImageView
+            android:id="@+id/ic_edit_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_edit_note_24"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_notes_content_preview"/>
+
+        <ImageView
+            android:id="@+id/ic_delete_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_delete_note_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ic_edit_note"
+            app:layout_constraintBottom_toBottomOf="@id/ic_edit_note"/>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>

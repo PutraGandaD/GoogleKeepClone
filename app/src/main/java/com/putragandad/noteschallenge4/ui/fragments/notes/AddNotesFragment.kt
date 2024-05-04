@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.putragandad.noteschallenge4.NotesApplication
+import com.putragandad.noteschallenge4.R
 import com.putragandad.noteschallenge4.data.Notes
 import com.putragandad.noteschallenge4.databinding.FragmentAddNotesBinding
 import com.putragandad.noteschallenge4.ui.viewmodels.NotesViewModel
@@ -45,8 +47,19 @@ class AddNotesFragment : Fragment() {
         binding.fabSaveNotes.setOnClickListener {
             val notesTitle = binding.tfNotesTitle.editText?.text.toString()
             val notesContent = binding.tfNotesContent.editText?.text.toString()
-            val notes = Notes(0, notesTitle, notesContent, userViewModel.getEmail())
-            notesViewModel.insert(notes)
+            if(notesTitle.isNotEmpty() && notesContent.isNotEmpty()) { // check condition if notes is not empty then save the notes
+                val notes = Notes(0, notesTitle, notesContent, userViewModel.getEmail())
+                notesViewModel.insert(notes)
+                findNavController().popBackStack() // back to notes list
+                Snackbar.make(it, "Notes successfully added!", Snackbar.LENGTH_LONG)
+                    .show()
+            } else {
+                Snackbar.make(it, "Notes cannot be empty!", Snackbar.LENGTH_LONG)
+                    .show()
+            }
+        }
+
+        binding.topAppBar.setNavigationOnClickListener {
             findNavController().popBackStack()
         }
     }

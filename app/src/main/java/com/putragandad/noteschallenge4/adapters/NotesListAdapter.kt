@@ -32,3 +32,8 @@ class NotesListAdapter(private val dataSet: List<Notes>) : RecyclerView.Adapter<
     }
 
 }
+
+interface OnItemClickListener {
+    fun onNotesClicked(notes: Notes)
+    fun onDelete(notes: Notes)
+}

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.putragandad.noteschallenge4.R
 import com.putragandad.noteschallenge4.databinding.FragmentLoginBinding
 import com.putragandad.noteschallenge4.ui.viewmodels.UserViewModel
@@ -42,6 +43,8 @@ class LoginFragment : Fragment() {
             val email = binding.tfEmail.editText?.text.toString()
             userViewModel.login(email)
             findNavController().navigate(R.id.action_loginFragment_to_noteListFragment)
+            Snackbar.make(it, "Login successful! You're signed in as ${userViewModel.getEmail()}", Snackbar.LENGTH_LONG)
+                .show()
         }
 
         binding.btnRegisterPage.setOnClickListener {
