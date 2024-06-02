@@ -45,8 +45,8 @@ class AddNotesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.fabSaveNotes.setOnClickListener {
-            val notesTitle = binding.tfNotesTitle.editText?.text.toString()
-            val notesContent = binding.tfNotesContent.editText?.text.toString()
+            val notesTitle = binding.tfNotesTitle.text.toString()
+            val notesContent = binding.tfNotesContent.text.toString()
             if(notesTitle.isNotEmpty() && notesContent.isNotEmpty()) { // check condition if notes is not empty then save the notes
                 val notes = Notes(0, notesTitle, notesContent, userViewModel.getEmail())
                 notesViewModel.insert(notes)

@@ -47,13 +47,13 @@ class EditNotesFragment : Fragment() {
             val notesTitleField = binding.tfNotesTitle
             val notesContentField = binding.tfNotesContent
 
-            notesTitleField.editText?.setText(notesTitleFromBundle)
-            notesContentField.editText?.setText(notesContentFromBundle)
+            notesTitleField.setText(notesTitleFromBundle)
+            notesContentField.setText(notesContentFromBundle)
 
             binding.fabSaveNotes.setOnClickListener {
                 // get current title and content from the textfield when fab pressed
-                val notesTitle = notesTitleField.editText?.text.toString()
-                val notesContent = notesContentField.editText?.text.toString()
+                val notesTitle = notesTitleField.text.toString()
+                val notesContent = notesContentField.text.toString()
                 if(notesTitle.isNotEmpty() && notesContent.isNotEmpty()) { // check isNotEmpty
                     val notes = Notes(notesIdFromBundle, notesTitle, notesContent, notesUserEmailFromBundle)
                     notesViewModel.update(notes)
