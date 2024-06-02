@@ -1,6 +1,7 @@
 package com.putragandad.noteschallenge4.ui.fragments.auth
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -44,13 +45,18 @@ class LoginFragment : Fragment() {
             val password = binding.tfPassword.editText?.text.toString()
 
             if(email.isNotEmpty() && password.isNotEmpty()) {
-                val loginAuth = userViewModel.login(email, password)
-                if(loginAuth) {
-                    findNavController().navigate(R.id.action_loginFragment_to_noteListFragment)
-                    Snackbar.make(it, "Login successful! You're signed in as ${userViewModel.getEmail()}", Snackbar.LENGTH_LONG)
-                        .show()
+                if(isValidEmail(email)) {
+                    val loginAuth = userViewModel.login(email, password)
+                    if(loginAuth) {
+                        findNavController().navigate(R.id.action_loginFragment_to_noteListFragment)
+                        Snackbar.make(it, "Login successful! You're signed in as ${userViewModel.getEmail()}", Snackbar.LENGTH_LONG)
+                            .show()
+                    } else {
+                        Snackbar.make(it, "Invalid email or password. Try Again.", Snackbar.LENGTH_LONG)
+                            .show()
+                    }
                 } else {
-                    Snackbar.make(it, "Invalid email or password. Try Again.", Snackbar.LENGTH_LONG)
+                    Snackbar.make(it, "Please enter a valid email address.", Snackbar.LENGTH_LONG)
                         .show()
                 }
             } else {
@@ -67,5 +73,9 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

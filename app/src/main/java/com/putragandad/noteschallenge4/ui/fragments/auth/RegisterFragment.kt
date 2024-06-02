@@ -1,6 +1,7 @@
 package com.putragandad.noteschallenge4.ui.fragments.auth
 
 import android.os.Bundle
+import android.util.Patterns
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -45,12 +46,16 @@ class RegisterFragment : Fragment() {
 
     private fun registerProcess(name: String, email: String, password: String, passwordCv: String) {
         if(name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && passwordCv.isNotEmpty()) {
-            val registerAuth = userViewModel.register(email, name, password, passwordCv)
-            if(registerAuth) {
-                Snackbar.make(requireView(), "User registered successfully! Please log in with your credentials to continue", Snackbar.LENGTH_LONG).show()
-                findNavController().popBackStack()
+            if(isValidEmail(email)) {
+                val registerAuth = userViewModel.register(email, name, password, passwordCv)
+                if(registerAuth) {
+                    Snackbar.make(requireView(), "User registered successfully! Please log in with your credentials to continue", Snackbar.LENGTH_LONG).show()
+                    findNavController().popBackStack()
+                } else {
+                    Snackbar.make(requireView(), "Passwords do not match. Please make sure your password and password confirmation are the same.", Snackbar.LENGTH_LONG).show()
+                }
             } else {
-                Snackbar.make(requireView(), "Passwords do not match. Please make sure your password and password confirmation are the same.", Snackbar.LENGTH_LONG).show()
+                Snackbar.make(requireView(), "Please enter a valid email address", Snackbar.LENGTH_LONG).show()
             }
         } else {
             Snackbar.make(requireView(), "Please fill in all fields to register. All fields are required.", Snackbar.LENGTH_LONG).show()
@@ -60,5 +65,9 @@ class RegisterFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
