@@ -7,5 +7,6 @@ class Constant {
         val USER_NAME = "USER_NAME"
         val USER_PASSWORD = "USER_PASSWORD"
         val NOTES_BUNDLE = "NOTES_BUNDLE"
+        val NOTES_LIST_LAYOUT = "NOTES_LAYOUT"
     }
 }

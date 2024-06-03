@@ -16,6 +16,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -77,14 +79,44 @@ class NoteListFragment : Fragment(), OnItemClickListener {
         val adapter = NotesListAdapter(dataset, this)
         val recyclerView : RecyclerView? = view?.findViewById(R.id.rv_notes_list)
         recyclerView?.adapter = adapter
-        recyclerView?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        setRvLayoutMode(recyclerView)
+
+        val searchBar = binding.searchBar
+        searchBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.searchbar_layout -> {
+                    switchLayoutMode()
+                    setRvLayoutMode(recyclerView)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
     private fun setUpRvSearchView(dataset: List<Notes>) {
         val adapter = NotesListAdapter(dataset, this)
         val recyclerView : RecyclerView? = view?.findViewById(R.id.rv_notes_search)
         recyclerView?.adapter = adapter
-        recyclerView?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        setRvLayoutMode(recyclerView)
+    }
+
+    private fun setRvLayoutMode(rv: RecyclerView?) {
+        val layoutmode = notesViewModel.getLayoutMode()
+        val searchBar = binding.searchBar
+        if(layoutmode == "column") {
+            rv?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+            searchBar.menu.findItem(R.id.searchbar_layout).setIcon(R.drawable.ic_grid_view_24)
+        } else {
+            rv?.layoutManager = GridLayoutManager(requireActivity(), 1)
+            searchBar.menu.findItem(R.id.searchbar_layout).setIcon(R.drawable.ic_list_view)
+        }
+    }
+
+    private fun switchLayoutMode() {
+        val layoutmode = notesViewModel.getLayoutMode()
+        val searchBar = binding.searchBar
+        if(layoutmode == "column") notesViewModel.setLayoutMode("standard") else notesViewModel.setLayoutMode("column")
     }
 
     private fun setUpSearchView() {

@@ -91,7 +91,6 @@ class EditNotesFragment : Fragment() {
         }
 
         binding.topAppBar.setNavigationOnClickListener {
-            Toast.makeText(requireActivity(), "Back", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }
     }

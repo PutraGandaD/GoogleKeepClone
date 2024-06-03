@@ -56,6 +56,14 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
     fun delete(notes: Notes) = viewModelScope.launch {
         repository.delete(notes)
     }
+
+    fun getLayoutMode() : String {
+        return SharedPreferencesManager.getString(Constant.NOTES_LIST_LAYOUT, "column")
+    }
+
+    fun setLayoutMode(mode: String)  {
+        SharedPreferencesManager.putString(Constant.NOTES_LIST_LAYOUT, mode)
+    }
 }
 
 // This class below created the ViewModel above
