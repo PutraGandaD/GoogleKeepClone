@@ -8,7 +8,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedDispatcher
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -58,6 +60,7 @@ class NoteListFragment : Fragment(), OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         setUpNavigationDrawer()
+        setUpSearchView()
 
         binding.fabAddNotes.setOnClickListener {
             findNavController().navigate(R.id.action_noteListFragment_to_addNotesFragment)
@@ -77,15 +80,38 @@ class NoteListFragment : Fragment(), OnItemClickListener {
         recyclerView?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    private fun setUpNavigationDrawer() {
-        val navDrawer = binding.notesDrawerLayout
+    private fun setUpRvSearchView(dataset: List<Notes>) {
+        val adapter = NotesListAdapter(dataset, this)
+        val recyclerView : RecyclerView? = view?.findViewById(R.id.rv_notes_search)
+        recyclerView?.adapter = adapter
+        recyclerView?.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+    }
 
+    private fun setUpSearchView() {
         val searchBar = binding.searchBar
         val searchView = binding.searchView
         searchView.setupWithSearchBar(searchBar)
 
+        searchView
+            .editText.addTextChangedListener { editText ->
+                val textQuery = editText.toString().trim()
+                if(textQuery.isNotEmpty()) {
+                    notesViewModel.searchNotesByUser(textQuery).observe(viewLifecycleOwner, Observer { notes ->
+                        setUpRvSearchView(notes)
+                    })
+                } else {
+                    setUpRvSearchView(emptyList())
+                }
+            }
+    }
+
+    private fun setUpNavigationDrawer() {
+        val navDrawer = binding.notesDrawerLayout
+
+        val searchBar = binding.searchBar
+
         // topappbar navdrawer
-        binding.searchBar.setNavigationOnClickListener {
+        searchBar.setNavigationOnClickListener {
             navDrawer.open()
         }
         val headerNavDrawer = binding.navigationView.inflateHeaderView(R.layout.header_navigation_drawer) // inflate navdrawer with heading
@@ -124,11 +150,6 @@ class NoteListFragment : Fragment(), OnItemClickListener {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
     override fun onNotesClicked(notes: Notes) {
         val bundle = Bundle().apply {
             putParcelable(Constant.NOTES_BUNDLE, notes)
@@ -149,5 +170,10 @@ class NoteListFragment : Fragment(), OnItemClickListener {
                     .show()
             }
             .show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

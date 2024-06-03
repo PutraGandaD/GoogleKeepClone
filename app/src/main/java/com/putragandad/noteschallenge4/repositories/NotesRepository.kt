@@ -15,6 +15,10 @@ class NotesRepository(private val notesDao: NotesDao) {
         return notesDao.getNotesByUser(email)
     }
 
+    fun searchNotes(email: String, query: String) : Flow<List<Notes>> {
+        return notesDao.searchNotesByUser(email, query)
+    }
+
     suspend fun insert(notes: Notes) {
         notesDao.insert(notes)
     }
@@ -26,6 +30,4 @@ class NotesRepository(private val notesDao: NotesDao) {
     suspend fun update(notes: Notes) {
         notesDao.update(notes)
     }
-
-
 }

@@ -21,15 +21,14 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
     val userEmail: String
         get() = _userEmail
 
+    private val _notesByUser = MutableLiveData<List<Notes>>()
+    val notesByUser : LiveData<List<Notes>>
+        get() = _notesByUser
+
     fun setUserEmail(value: String) {
         _userEmail = value
         updateNotesData()
     }
-
-    private val _notesByUser = MutableLiveData<List<Notes>>()
-
-    val notesByUser : LiveData<List<Notes>>
-        get() = _notesByUser
 
     // launch coroutine for executing repository function
 
@@ -40,6 +39,10 @@ class NotesViewModel(private val repository: NotesRepository) : ViewModel() {
                 _notesByUser.value = it
             }
         }
+    }
+
+    fun searchNotesByUser(query: String) : LiveData<List<Notes>> {
+        return repository.searchNotes(userEmail, query).asLiveData()
     }
 
     fun insert(notes: Notes) = viewModelScope.launch {

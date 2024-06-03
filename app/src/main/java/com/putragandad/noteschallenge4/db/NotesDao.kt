@@ -15,6 +15,10 @@ interface NotesDao {
     @Query("SELECT * FROM note_table WHERE userEmail = :email ORDER BY notesContent ASC")
     fun getNotesByUser(email: String) : Flow<List<Notes>> // Use Flow
 
+    // Search Notes
+    @Query("SELECT * FROM note_table WHERE userEmail = :email AND title LIKE '%' || :query || '%'")
+    fun searchNotesByUser(email: String, query: String): Flow<List<Notes>>
+
     // Inserting a notes
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(notes: Notes)
