@@ -5,9 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isNotEmpty
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.putragandad.noteschallenge4.NotesApplication
 import com.putragandad.noteschallenge4.R
@@ -66,7 +68,30 @@ class EditNotesFragment : Fragment() {
             }
         }
 
+        binding.bottomAppBar.setOnMenuItemClickListener { menuItem ->
+            when(menuItem.itemId) {
+                R.id.edit_bottom_delete -> {
+                    MaterialAlertDialogBuilder(requireContext())
+                        .setTitle("Delete Notes")
+                        .setMessage("Are you sure to delete this note?")
+                        .setNegativeButton("No") { dialog, which ->
+                            dialog.cancel()
+                        }
+                        .setPositiveButton("Yes") { dialog, which ->
+                            bundle?.let { notesViewModel.delete(it) }
+                            Snackbar.make(requireView(), "Notes deleted successfully.", Snackbar.LENGTH_LONG)
+                                .show()
+                            findNavController().popBackStack() // pop back stack when notes deleted
+                        }
+                        .show()
+                    true
+                }
+                else -> false
+            }
+        }
+
         binding.topAppBar.setNavigationOnClickListener {
+            Toast.makeText(requireActivity(), "Back", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }
     }

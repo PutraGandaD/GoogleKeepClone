@@ -32,15 +32,8 @@ class NotesListAdapter(private val dataSet: List<Notes>, val itemClickListener: 
         holder.tvNotesTitle.text = getData.title
         holder.tvNotesContent.text = getData.notesContent
 
-        val editNotesIcon = holder.itemView.findViewById<ImageView>(R.id.ic_edit_note)
-        val deleteNotesIcon = holder.itemView.findViewById<ImageView>(R.id.ic_delete_note)
-
-        editNotesIcon.setOnClickListener {
+        holder.itemView.setOnClickListener {
             itemClickListener.onNotesClicked(getData)
-        }
-
-        deleteNotesIcon.setOnClickListener {
-            itemClickListener.onDelete(getData)
         }
     }
 
