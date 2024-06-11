@@ -13,7 +13,7 @@ Simple Notes Taking App.
 - [x] Using Room (Dao + Repository) as the database
 - [x] Using Android Jetpack Navigation Component 
 - [x] Using SharedPreference for simulating Login/Register process
-- [x] Using RecyclerView with OnClickListener Interface and StaggeredLayout Manager
+- [x] Using RecyclerView with OnClickListener Interface and StaggeredLayout Manager 
 
 ## Architecture Overview : 
 ![338466894-88b1e7c2-d82d-4677-9f58-6bc62ac73370](https://github.com/PutraGandaD/GoogleKeepClone/assets/54593964/b26d89c6-2234-4309-84b0-8222db3cd7e2)
@@ -26,7 +26,7 @@ Simple Notes Taking App.
 - [ ] Dark Theme / Light Theme switch
 
 ## References :
-- https://sanjanahumanintech.medium.com/mvvm-with-clean-architecture-in-react-native-a-detailed-guide-e5e25b815db0 (Thanks to Sanjana for MVVM Architecture Overview Charts)
+- https://sanjanahumanintech.medium.com/mvvm-with-clean-architecture-in-react-native-a-detailed-guide-e5e25b815db0 (Thanks to Sanjana for MVVM Architecture Overview)
 
 
 
