@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/material_basic_bg"
+    android:background="@android:color/white"
     tools:context=".ui.fragments.auth.RegisterFragment">
 
     <TextView
@@ -14,7 +14,7 @@
         android:text="Register"
         android:textColor="@color/black"
         android:textSize="36sp"
-        android:textStyle="bold"
+        android:textStyle="normal"
         android:layout_marginStart="12dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,15 +109,28 @@
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register Account"
-        android:textSize="16sp"
-        app:backgroundTint="@color/material_btn_basic"
+        android:text="Register"
+        android:textSize="14sp"
+        app:backgroundTint="@color/primary_blue"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginTop="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_signin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tf_passwordcv" />
+
+    <TextView
+        android:id="@+id/btn_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Have an account? Sign in"
+        android:textColor="@color/primary_blue"
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

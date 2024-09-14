@@ -42,6 +42,10 @@ class RegisterFragment : Fragment() {
 
             registerProcess(name, email, password, passwordCv)
         }
+
+        binding.btnSignin.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun registerProcess(name: String, email: String, password: String, passwordCv: String) {
